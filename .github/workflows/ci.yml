@@ -42,6 +42,10 @@ jobs:
           bundler-cache: true
           cache-version: "v2" # 캐시 키 변경 (임의 값)
 
+      - name: Force Ruby PATH
+        run: echo "/opt/hostedtoolcache/Ruby/3.3.7/x64/bin" >> $GITHUB_PATH
+
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
