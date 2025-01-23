@@ -23,11 +23,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
-
-    strategy:
-      matrix:
-        ruby: ["3.3"]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -39,12 +35,15 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.7
+          check-latest: true
           bundler-cache: true
-          cache-version: "v2" # 캐시 키 변경 (임의 값)
+          cache-version: "v4" # 캐시 무효화
 
       - name: Force Ruby PATH
         run: echo "/opt/hostedtoolcache/Ruby/3.3.7/x64/bin" >> $GITHUB_PATH
 
+      - name: Check Ruby Version
+        run: ruby -v
 
       - name: Setup Node
         uses: actions/setup-node@v4
